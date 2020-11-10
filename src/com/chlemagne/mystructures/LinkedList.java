@@ -64,7 +64,7 @@ public class LinkedList {
         public String toString() {
             return "Node{" +
                     "value=" + value +
-                    ", isLast=" + isLast() +
+                    ", next=" + ((next != null) ? next.value : "null") +
                     '}';
         }
     }
@@ -169,6 +169,8 @@ public class LinkedList {
      * Invert linked list order.
      */
     public void reverse() {
+        if (isEmpty() || first == last) return;
+
         Node previous = null;
         Node current = first;
         this.last = new Node(current.value, null);

@@ -5,9 +5,13 @@ public class LinkedListTest {
     public static void main (String[] args) {
 
         LinkedList list = new LinkedList();
+        list.reverse();
         System.out.println(list);
 
         list.addLast(40);
+        list.reverse();
+        System.out.println(list);
+
         list.addLast(50);
         System.out.println(list);
 
