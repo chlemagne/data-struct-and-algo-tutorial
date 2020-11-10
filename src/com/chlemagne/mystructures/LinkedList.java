@@ -31,6 +31,15 @@ public class LinkedList {
         private Node next;
 
         /**
+         * Create a primitive-type integer Node object.
+         * @param value
+         */
+        public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        /**
          * Create a primitive-type integer Node object, pointing to itself as the next Node.
          * @param value
          */
@@ -154,6 +163,21 @@ public class LinkedList {
         }
 
         return -1;
+    }
+
+    /**
+     * Invert linked list order.
+     */
+    public void reverse() {
+        Node previous = null;
+        Node current = first;
+        this.last = new Node(current.value, null);
+
+        while(current != null) {
+            previous = new Node(current.value, previous);
+            current = current.next;
+        }
+        this.first = previous;
     }
 
     /**

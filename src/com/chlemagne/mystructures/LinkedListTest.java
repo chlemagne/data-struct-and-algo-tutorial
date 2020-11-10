@@ -36,5 +36,8 @@ public class LinkedListTest {
 
         System.out.printf("Index of 80-valued node: %d%n", list.indexOf(80));
         System.out.printf("Index of 200-valued node: %d%n", list.indexOf(200));
+
+        list.reverse();
+        System.out.println(list);
     }
 }
