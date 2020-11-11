@@ -43,5 +43,10 @@ public class LinkedListTest {
 
         list.reverse();
         System.out.println(list);
+
+        System.out.printf("Find k=1 value from the end: %d%n", list.getKthFromEnd(1));
+        System.out.printf("Find k=3 value from the end: %d%n", list.getKthFromEnd(3));
+        System.out.printf("Find k=8 value from the end: %d%n", list.getKthFromEnd(8));
+        //System.out.printf("Find k=100 value from the end: %d%n", list.getKthFromEnd(100));
     }
 }

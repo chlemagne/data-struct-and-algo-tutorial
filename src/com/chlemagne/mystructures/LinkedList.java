@@ -183,6 +183,42 @@ public class LinkedList {
     }
 
     /**
+     * Get Kth value from the end where the tail node is K=1, second to the last node K=2, and so on.
+     * @param k
+     * @return value
+     */
+    public int getKthFromEnd(int k) {
+        /*  Linear Algorithm:
+                Find k=4
+                Distance between p1 & p2 = k - 1 = 3
+                       k:              ...   5     4     3     2     1
+                    List: [10 -> 20 -> 30 -> 40 -> 50 -> 60 -> 70 -> 80]
+                           p1                p2
+                               >>> MOVE POINTERS ONE STEP >>>
+                                             p1                p2
+                               >>>> MOVE POINTERS ONE STEP >>>
+                                                  p1                 p2
+                        When p2 reaches the end, p1=kth node
+         */
+        Node p1 = first;
+        Node p2 = first;
+
+        // advance pointer2 to its correct position
+        for (int i = 0; i < (k - 1); i++) {
+            p2 = p2.next;
+            if (p2 == null)
+                throw new IllegalArgumentException();
+        }
+
+        // advance p1 and p2 one step
+        while (p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p1.value;
+    }
+
+    /**
      * Get the second to the last node.
      * @return Node.
      */
