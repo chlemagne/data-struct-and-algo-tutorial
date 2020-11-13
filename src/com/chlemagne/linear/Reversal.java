@@ -1,4 +1,4 @@
-package com.chlemagne.mystructures;
+package com.chlemagne.linear;
 
 import java.util.Stack;
 

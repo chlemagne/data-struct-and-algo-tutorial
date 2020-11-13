@@ -1,6 +1,4 @@
-package com.chlemagne.mystructures;
-
-import java.util.Arrays;
+package com.chlemagne.linear;
 
 public class DynamicIntArrayTest {
 

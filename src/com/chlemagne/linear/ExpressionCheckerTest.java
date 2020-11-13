@@ -1,4 +1,4 @@
-package com.chlemagne.mystructures;
+package com.chlemagne.linear;
 
 public class ExpressionCheckerTest {
 
