@@ -2,6 +2,7 @@ package com.chlemagne.nonlinear;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tree {
@@ -292,6 +293,14 @@ public class Tree {
         // recursion
         getNodesAtDistance(node.leftChild, distance - 1, list);
         getNodesAtDistance(node.rightChild, distance - 1, list);
+    }
+
+    public void traverseLevelOrder() {
+        // breadth-first or level-order traversal
+        for (int i = 0; i <= height(root); i++) {
+            List<Integer> list = getNodesAtDistance(i);
+            System.out.println(Arrays.toString(list.toArray(new Integer[0])));
+        }
     }
 
     private boolean isLeaf(Node node) {

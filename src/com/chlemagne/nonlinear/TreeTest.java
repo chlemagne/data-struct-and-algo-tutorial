@@ -39,5 +39,8 @@ public class TreeTest {
 
         List<Integer> list = tree.getNodesAtDistance(2);
         System.out.println(Arrays.toString(list.toArray(new Integer[0])));
+
+        System.out.println("Traverse by level/depth:");
+        tree.traverseLevelOrder();
     }
 }
