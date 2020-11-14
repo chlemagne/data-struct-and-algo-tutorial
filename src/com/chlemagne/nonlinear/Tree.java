@@ -232,6 +232,25 @@ public class Tree {
         return current.value;
     }
 
+    public boolean equals(Tree other) {
+        return equals(root, other.root);
+    }
+    
+    private boolean equals(Node first, Node second) {
+        // base condition 1
+        if (first == null && second == null)
+            return true;
+
+        // recursion with condition
+        if (first != null && second != null)
+            return first.value == second.value
+                    && equals(first.leftChild, second.leftChild)
+                    && equals(first.rightChild, second.rightChild);
+
+        // everything else, return false
+        return false;
+    }
+
     private boolean isLeaf(Node node) {
         return (node.leftChild == null && node.rightChild == null) ? true : false;
     }
