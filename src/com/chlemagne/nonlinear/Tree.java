@@ -166,10 +166,74 @@ public class Tree {
             return -1;
 
         // base condition; leaf node
-        if (root.leftChild == null && root.rightChild == null)
+        if (isLeaf(root))
             return 0;
 
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    /**
+     * Find the minimum value using O(n) algorithm for General Binary Trees.
+     */
+    public int min1() {
+        return min1(root);
+    }
+
+    // min1() method has a runtime complexity of O(n) and can be applied to General Binary Trees.
+    private int min1(Node root) {
+        /*  Find minimum:
+                           20
+                    10            30
+                 6      24     4
+              8     3
+
+        */
+
+        // edge condition
+        if (root == null) {
+            throw new IllegalStateException();
+        }
+
+        // base condition
+        if (isLeaf(root))
+            return root.value;
+
+        int minLeft = min1(root.leftChild);
+        int minRight = min1(root.rightChild);
+
+        return Math.min(root.value, Math.min(minLeft, minRight));
+    }
+
+    /**
+     * Find the minimum value using O(log n) algorithm for Binary Search Trees.
+     */
+    public int min2() {
+        return min2(root);
+    }
+
+    // min1() method has a runtime complexity of O(log n) and can be applied ONLY to Binary Search Trees.
+    private int min2(Node root) {
+        /*  Find minimum:
+                           7
+                    4            9
+                 1     6      8    10
+
+            In Binary Search Trees, the left-most leaf is the MINIMUM.
+        */
+
+        // edge case
+        if (root == null)
+            throw new IllegalStateException();
+
+        Node current = root;
+        while(current.leftChild != null)
+            current = current.leftChild;
+
+        return current.value;
+    }
+
+    private boolean isLeaf(Node node) {
+        return (node.leftChild == null && node.rightChild == null) ? true : false;
     }
 
     private Node getOrCreateRoot(int value) {

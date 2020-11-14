@@ -19,5 +19,7 @@ public class TreeTest {
         tree.traverseInOrder();
         tree.traversePostOrder();
         System.out.println(tree.height());
+        System.out.println(tree.min1());
+        System.out.println(tree.min2());
     }
 }
