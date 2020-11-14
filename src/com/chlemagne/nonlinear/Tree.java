@@ -1,6 +1,9 @@
 package com.chlemagne.nonlinear;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree {
 
     private Node root;
@@ -267,6 +270,28 @@ public class Tree {
         // recursion
         return isBinarySearchTree(node.leftChild, min, node.value - 1)
                 && isBinarySearchTree(node.rightChild, node.value + 1, max);
+    }
+
+    public List<Integer> getNodesAtDistance(int distance) {
+        List<Integer> list = new ArrayList<>();
+        getNodesAtDistance(root, distance, list);
+        return list;
+    }
+
+    private void getNodesAtDistance(Node node, int distance, List<Integer> list) {
+        // base condition 1
+        if (node == null)
+            return;
+
+        // base condition 2
+        if (distance == 0) {
+            list.add(node.value);
+            return;
+        }
+
+        // recursion
+        getNodesAtDistance(node.leftChild, distance - 1, list);
+        getNodesAtDistance(node.rightChild, distance - 1, list);
     }
 
     private boolean isLeaf(Node node) {

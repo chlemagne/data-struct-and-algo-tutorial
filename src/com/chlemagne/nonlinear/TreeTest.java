@@ -1,5 +1,8 @@
 package com.chlemagne.nonlinear;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TreeTest {
     public static void main (String[] args) {
         Tree tree = new Tree();
@@ -33,5 +36,8 @@ public class TreeTest {
 
         System.out.println(tree.equals(other)); // false
         System.out.println(tree.isBinarySearchTree());
+
+        List<Integer> list = tree.getNodesAtDistance(2);
+        System.out.println(Arrays.toString(list.toArray(new Integer[0])));
     }
 }
