@@ -32,5 +32,6 @@ public class TreeTest {
         other.insert(2); // difference
 
         System.out.println(tree.equals(other)); // false
+        System.out.println(tree.isBinarySearchTree());
     }
 }

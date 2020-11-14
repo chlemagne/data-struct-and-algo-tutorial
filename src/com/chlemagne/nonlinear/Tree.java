@@ -251,6 +251,24 @@ public class Tree {
         return false;
     }
 
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node node, int min, int max) {
+        // base condition 1
+        if (node == null)
+            return true;
+
+        // base condition 2
+        if ((node.value < min) || (node.value > max))
+            return false;
+
+        // recursion
+        return isBinarySearchTree(node.leftChild, min, node.value - 1)
+                && isBinarySearchTree(node.rightChild, node.value + 1, max);
+    }
+
     private boolean isLeaf(Node node) {
         return (node.leftChild == null && node.rightChild == null) ? true : false;
     }
