@@ -138,6 +138,40 @@ public class Tree {
         System.out.printf("%d, ", root.value);
     }
 
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node root) {
+        /*  Height Calculation:
+                           7
+                    4            9
+                 1     6      8    10
+
+
+            - height(non-leaf) is the longest distance from the last child (left or right) leaf node.
+            - height(leaf) is ZERO.
+            - A leaf node does not have any children.
+
+            Formula:
+            ========
+
+            height(node) = 1 + max(height(leftChild), height(rightChild));
+
+            NOTE: tree height != tree depth
+         */
+
+        // edge case; empty tree or no nodes at all
+        if (root == null)
+            return -1;
+
+        // base condition; leaf node
+        if (root.leftChild == null && root.rightChild == null)
+            return 0;
+
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
     private Node getOrCreateRoot(int value) {
         if (root == null)
             root = new Node(value);
