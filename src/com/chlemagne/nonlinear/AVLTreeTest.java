@@ -5,7 +5,7 @@ public class AVLTreeTest {
         AVLTree tree = new AVLTree();
 
         tree.insert(10);
-        tree.insert(30);
         tree.insert(20);
+        tree.insert(30);
     }
 }
