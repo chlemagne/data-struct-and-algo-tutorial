@@ -1,6 +1,8 @@
 package com.chlemagne.nonlinear;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Trie {
     private class Node {
@@ -14,12 +16,20 @@ public class Trie {
             this.isEndOfWord = false;
         }
 
+        public char getValue() {
+            return value;
+        }
+
         public boolean hasChild(char c) {
             return children.containsKey(c);
         }
 
         public boolean hasChildren() {
             return !children.isEmpty();
+        }
+
+        public Node[] childrenToArray() {
+            return children.values().toArray(new Node[0]);
         }
 
         public void addChild(char c) {
@@ -91,6 +101,42 @@ public class Trie {
             return;
 
         remove(root, word, 0);
+    }
+
+    public List<String> findWords(String prefix) {
+        List<String> words = new ArrayList<>();
+
+        Node node = findNodeOfPrefix(prefix);
+        findWords(node, prefix, words);
+
+        return words;
+    }
+
+    private void findWords(Node node, String prefix, List<String> words) {
+        // base condition
+        if (node == null)
+            return;
+
+        if (node.isEndOfWord())
+            words.add(prefix);
+
+        for (Node child : node.childrenToArray())
+            findWords(child, prefix + child.getValue(), words);
+    }
+
+    private Node findNodeOfPrefix(String prefix) {
+        if (prefix == null)
+            return null;
+
+        Node node = root;
+        for (char c : prefix.toCharArray()) {
+            if (!node.hasChild(c))
+                return node;
+
+            node = node.getChild(c);
+        }
+
+        return node;
     }
 
     private void remove(Node node, String word, int position) {
