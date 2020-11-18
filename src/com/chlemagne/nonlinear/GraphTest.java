@@ -16,9 +16,24 @@ public class GraphTest {
         graph.addEdge("John", "Mary");
         graph.removeEdge("John", "Alice");
         graph.addEdge("Naruto", "Bob");
-        graph.print();
+        //graph.print();
 
         graph.removeNode("Naruto");
-        graph.print();
+        //graph.print();
+
+        // traversal test
+        Graph graph2 = new Graph();
+        graph2.addNode("A");
+        graph2.addNode("B");
+        graph2.addNode("C");
+        graph2.addNode("D");
+
+        graph2.addEdge("A", "B");
+        graph2.addEdge("A", "C");
+        graph2.addEdge("B", "D");
+        graph2.addEdge("D", "C");
+
+        graph2.print();
+        graph2.traverseBreadthFirst("A");
     }
 }

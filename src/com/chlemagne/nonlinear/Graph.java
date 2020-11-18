@@ -18,9 +18,7 @@
  */
 package com.chlemagne.nonlinear;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     private class Node {
@@ -74,7 +72,7 @@ public class Graph {
 
     public void removeEdge(String from, String to) {
         if (!nodeExists(from) || !nodeExists(to))
-            throw;
+            return;
 
         Node fromNode = nodes.get(from);
         Node toNode = nodes.get(to);
@@ -87,6 +85,38 @@ public class Graph {
             System.out.printf("%s \tis connected with %s%n", node.label, edges.get(node));
 
         System.out.println("\n");
+    }
+
+    public void traverseBreadthFirst(String start) {
+        Node node = nodes.get(start);
+        if (node == null)
+            return;
+
+        Set<Node> out = new LinkedHashSet<>();
+        Queue<Node> queue = new ArrayDeque<>();
+
+        queue.add(node);
+        traverseBreadthFirst(out, queue);
+    }
+
+    private void traverseBreadthFirst(Set out, Queue queue) {
+        // base condition
+        if (queue.isEmpty())
+            return;
+
+        // current node is visited and added to output
+        Node current = (Node) queue.remove();
+        boolean isUnique = out.add(current);
+        if (isUnique)
+            System.out.println(current.label);
+
+        // add nodes to queue
+        for (Node next : edges.get(current))
+            if (!out.contains(next))
+                queue.add(next);
+
+        // recursion
+        traverseBreadthFirst(out, queue);
     }
 
     private boolean nodeExists(String label) {
