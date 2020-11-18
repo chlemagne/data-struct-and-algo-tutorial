@@ -111,6 +111,36 @@ public class Graph {
         traverseDepthFirst1(nodes.get(start), new HashSet<>());
     }
 
+    /**
+     * Depth-first traversal using iteration.
+     * @param start
+     */
+    public void traverseDepthFirst2(String start) {
+        Node node = nodes.get(start);
+        if (node == null)
+            return;
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(node);
+
+        Set<Node> visited = new HashSet<>();
+
+        while(!stack.isEmpty()) {
+            Node current = stack.pop();
+
+            if (visited.contains(current))
+                continue;
+
+            System.out.println(current);
+            visited.add(current);
+
+            for (Node next : edges.get(current)) {
+                if (!visited.contains(next))
+                    stack.push(next);
+            }
+        }
+    }
+
     private void traverseBreadthFirst(Set out, Queue queue) {
         // base condition
         if (queue.isEmpty())
