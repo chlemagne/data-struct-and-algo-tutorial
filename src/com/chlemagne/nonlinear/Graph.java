@@ -99,6 +99,18 @@ public class Graph {
         traverseBreadthFirst(out, queue);
     }
 
+    /**
+     * Depth-first traversal using recursion.
+     * @param start
+     */
+    public void traverseDepthFirst1(String start) {
+        Node node = nodes.get(start);
+        if (node == null)
+            return;
+
+        traverseDepthFirst1(nodes.get(start), new HashSet<>());
+    }
+
     private void traverseBreadthFirst(Set out, Queue queue) {
         // base condition
         if (queue.isEmpty())
@@ -117,6 +129,17 @@ public class Graph {
 
         // recursion
         traverseBreadthFirst(out, queue);
+    }
+
+    private void traverseDepthFirst1(Node node, Set<Node> visited) {
+        System.out.println(node);
+        visited.add(node);
+
+        for (Node next : edges.get(node))
+            if (!visited.contains(next))
+                traverseDepthFirst1(next, visited);
+
+
     }
 
     private boolean nodeExists(String label) {
